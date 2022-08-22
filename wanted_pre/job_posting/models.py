@@ -1,7 +1,6 @@
 from django.db import models
 
 # Create your models here.
- #회사, 사용자, 채용공고, 지원내역(선택사항)
 class Company(models.Model):
     name = models.CharField("회사이름", max_length=20)
     country = models.CharField("국가", max_length=20)
