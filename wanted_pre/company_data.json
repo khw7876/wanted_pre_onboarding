@@ -1,50 +1,92 @@
 [
     {
+        "model": "job_posting.skill",
+        "fields": {
+            "skill_name": "Python"
+        }
+    },
+    {
+        "model": "job_posting.skill",
+        "fields": {
+            "skill_name": "Django"
+        }
+    },
+    {
+        "model": "job_posting.skill",
+        "fields": {
+            "skill_name": "javascript"
+        }
+    },
+
+
+    {
+        "model": "job_posting.jobposition",
+        "fields": {
+            "job_position": "백엔드 주니어 개발자"
+        }
+    },
+    {
+        "model": "job_posting.jobposition",
+        "fields": {
+            "job_position": "프론트엔드 개발자"
+        }
+    },
+    {
+        "model": "job_posting.jobposition",
+        "fields": {
+            "job_position": "Django 백엔드 개발자"
+        }
+    },
+
+    {
+        "model": "job_posting.companycountry",
+        "fields": {
+            "country": "한국"
+        }
+    },
+
+    {
+        "model": "job_posting.companyregion",
+        "fields": {
+            "region": "서울"
+        }
+    },
+    {
+        "model": "job_posting.companyregion",
+        "fields": {
+            "region": "판교"
+        }
+    },
+    {
+        "model": "job_posting.companyregion",
+        "fields": {
+            "region": "부산"
+        }
+    },
+
+
+    {
         "model": "job_posting.company",
         "fields": {
-            "name": "회사1",
-            "country": "한국1",
-            "region": "서울1"
+            "name": "1번회사",
+            "country": 1,
+            "region": 1
         }
     },
     {
         "model": "job_posting.company",
         "fields": {
-            "name": "회사2",
-            "country": "한국2",
-            "region": "서울2"
+            "name": "2번회사",
+            "country": 1,
+            "region": 2
         }
     },
     {
         "model": "job_posting.company",
         "fields": {
-            "name": "회사3",
-            "country": "한국3",
-            "region": "서울3"
-        }
-    },
-    {
-        "model": "job_posting.company",
-        "fields": {
-            "name": "회사4",
-            "country": "한국4",
-            "region": "서울4"
-        }
-    },
-    {
-        "model": "job_posting.company",
-        "fields": {
-            "name": "회사5",
-            "country": "한국5",
-            "region": "서울5"
-        }
-    },
-    {
-        "model": "job_posting.company",
-        "fields": {
-            "name": "회사6",
-            "country": "한국6",
-            "region": "서울6"
+            "name": "3번회사",
+            "country": 1,
+            "region": 3
         }
     }
 ]
