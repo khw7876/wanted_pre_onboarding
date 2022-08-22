@@ -1,6 +1,8 @@
 import imp
 from django.shortcuts import render
 from rest_framework.views import APIView
+
+from job_posting.services.job_posting_service import create_job_post
 # Create your views here.
 
 class JobPostView(APIView):
@@ -9,5 +11,5 @@ class JobPostView(APIView):
     """
 
     def post(self, request):
-
+        create_job_post(request.data)
         return True

@@ -1,0 +1,50 @@
+[
+    {
+        "model": "job_posting.company",
+        "fields": {
+            "name": "회사1",
+            "country": "한국1",
+            "region": "서울1"
+        }
+    },
+    {
+        "model": "job_posting.company",
+        "fields": {
+            "name": "회사2",
+            "country": "한국2",
+            "region": "서울2"
+        }
+    },
+    {
+        "model": "job_posting.company",
+        "fields": {
+            "name": "회사3",
+            "country": "한국3",
+            "region": "서울3"
+        }
+    },
+    {
+        "model": "job_posting.company",
+        "fields": {
+            "name": "회사4",
+            "country": "한국4",
+            "region": "서울4"
+        }
+    },
+    {
+        "model": "job_posting.company",
+        "fields": {
+            "name": "회사5",
+            "country": "한국5",
+            "region": "서울5"
+        }
+    },
+    {
+        "model": "job_posting.company",
+        "fields": {
+            "name": "회사6",
+            "country": "한국6",
+            "region": "서울6"
+        }
+    }
+]
