@@ -6,9 +6,11 @@ from job_posting.models import CompanyCountry as CompanyCountryModel
 from job_posting.models import CompanyRegion as CompanyRegionModel
 from job_posting.models import Skill as SkillModel
 from job_posting.models import JobPosition as JobPositionModel, JobPosting as JobPostingModel
-from job_posting.services.job_posting_service import create_job_post
-from job_posting.services.job_posting_service import update_job_post
-
+from job_posting.services.job_posting_service import (
+    create_job_post,
+    update_job_post,
+    delete_job_post,
+)
 
 DOES_NOT_EXIST_NUM = 0
 
@@ -37,7 +39,6 @@ class TestCreateJobPost(TestCase):
 
         test_request_data = {"company" : company_id, "job_position" : job_position_id, "compensation" : 100000, "content" : "회사소개", "skill" :skill_id}
         
-
         with self.assertNumQueries(4):
             create_job_post(test_request_data)
 
@@ -111,7 +112,6 @@ class TestCreateJobPost(TestCase):
         case: 없는 회사 데이터를 입력했을 경우
         """
         job_post_id_for_updata = JobPostingModel.objects.get(content="test채용공고").id
-
         test_request_data = {"company" : DOES_NOT_EXIST_NUM}
         
         with self.assertRaises(exceptions.ValidationError):
@@ -134,8 +134,25 @@ class TestCreateJobPost(TestCase):
         채용공고를 수정하는 service함수 검증
         case : 존재하지 않는 jobpost_id를 받았을 경우
         """
-
         test_request_data = {"content" : "content수정중"}
         
         with self.assertRaises(JobPostingModel.DoesNotExist):
             update_job_post(DOES_NOT_EXIST_NUM, test_request_data)
+
+    def test_delete_job_post(self):
+        """
+        채용공고를 삭제하는 service함수 검증
+        case : 정상적으로 작동을 했을 경우
+        """
+        job_post_id_for_delete = JobPostingModel.objects.get(content="test채용공고").id
+
+        with self.assertNumQueries(2):
+            delete_job_post(job_post_id_for_delete)
+
+    def test_when_delete_job_post_content_has_worng_post_id(self):
+        """
+        채용공고를 삭제하는 service함수 검증
+        case : 존재하지 않는 jobpost_id를 받았을 경우
+        """
+        with self.assertRaises(JobPostingModel.DoesNotExist):
+            delete_job_post(DOES_NOT_EXIST_NUM)

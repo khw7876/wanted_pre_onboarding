@@ -94,4 +94,34 @@ class TestJobPostingAPI(APITestCase):
         result = response.json()
 
         self.assertEqual(response.status_code, 404)
-        self.assertEqual(result["detail"], "존재하지 않는 jobPost입니다.")
+        self.assertEqual(result["detail"], "수정할 데이터가 존재하지 않습니다.")
+
+    def test_delete_jobpost(self):
+        """
+        JobPostView의 delete 함수를 검증하는 함수
+        case : 정상적으로 작동을 했을 경우
+        """
+        update_job_post = JobPostingModel.objects.get(content="test채용공고")
+
+        client = APIClient()
+
+        url = "/job_post/" + str(update_job_post.id)
+        response = client.delete(url, content_type="application/json")
+        result = response.json()
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(result["detail"], "채용공고가 삭제 되었습니다.")
+        
+    def test_when_delete_jobpost_has_wrong_post_id(self):
+        """
+        JobPostView의 delete 함수를 검증하는 함수
+        case : 존재하지 않는 post_id를 받았을 경우
+        """
+        client = APIClient()
+
+        url = "/job_post/" + str(DOES_NOT_EXIST_NUM)
+        response = client.delete(url, content_type="application/json")
+        result = response.json()
+
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(result["detail"], "삭제할 데이터가 존재하지 않습니다.")
