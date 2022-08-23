@@ -5,10 +5,11 @@ from job_posting.models import Company as CompanyModel
 from job_posting.models import CompanyCountry as CompanyCountryModel
 from job_posting.models import CompanyRegion as CompanyRegionModel
 from job_posting.models import Skill as SkillModel
-from job_posting.services.job_posting_service import create_job_post
 from job_posting.models import JobPosition as JobPositionModel, JobPosting as JobPostingModel
+from job_posting.services.job_posting_service import create_job_post
 
-DOES_NOT_EXIST_NUM = 999
+DOES_NOT_EXIST_NUM = -1
+
 class TestCreateJobPost(TestCase):
     """
     job_posting의 서비스들를 검증하는 클래스
