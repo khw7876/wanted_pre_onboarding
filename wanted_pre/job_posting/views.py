@@ -1,0 +1,20 @@
+import imp
+from django.shortcuts import render
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status, exceptions
+
+from job_posting.services.job_posting_service import create_job_post
+# Create your views here.
+
+class JobPostView(APIView):
+    """
+    회사 채용공고의 CRUD를 담당하는 View
+    """
+
+    def post(self, request):
+        try:
+            create_job_post(request.data)
+            return Response({"detail" : "새로운 채용공고가 등록이 되었습니다."}, status=status.HTTP_200_OK)
+        except exceptions.ValidationError:
+            return Response({"detail": "모델에 존재하지 않는 PK를 받고 있습니다."}, status=status.HTTP_400_BAD_REQUEST)
