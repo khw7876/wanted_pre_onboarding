@@ -31,3 +31,15 @@
 > 4. 3번에서 검증한 Error를 Views.py에서 핸들링
 > 5. API test에서 4번의 핸들링 검증
 <hr>
+
+## 3번문제
+> ![image](https://user-images.githubusercontent.com/101394490/186184928-98d465df-94a2-407b-90b6-7240875558db.png)
+> ### 요구사항:<br>
+>1번문제에서 생성한 데이터를 삭제가 되도록 구현. <br>
+> ### 구현과정: <br>
+> 1. views.py에 delete 메소드 구현
+> 2. 필요한 service 분리작성
+> 3. 해당 service에서 발생 가능한 Error를 Test코드로 검증
+> 4. 3번에서 검증한 Error를 Views.py에서 핸들링
+> 5. API test에서 4번의 핸들링 검증
+<hr>
