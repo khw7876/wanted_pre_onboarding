@@ -1,4 +1,3 @@
-from functools import partial
 from typing import Dict
 from job_posting.models import JobPosting as JobPostingModel
 from job_posting.serializers import JobPostingSerializer
@@ -19,3 +18,10 @@ def update_job_post(job_post_id : int, jobpost_data) -> None:
     update_jobpost_serializer = JobPostingSerializer(jobpost_for_update, data=jobpost_data, partial=True)
     update_jobpost_serializer.is_valid(raise_exception=True)
     update_jobpost_serializer.save()
+
+def delete_job_post(job_post_id : int) -> None:
+    """
+    3. 채용공고를 삭제하는 service
+    """
+    jobpost_fot_delete = JobPostingModel.objects.get(id=job_post_id)
+    jobpost_fot_delete.delete()
