@@ -19,3 +19,15 @@
 > 4. views.py에서 API와 관련이 없는 service단위 분리
 > 5. TDD방식을 위하여 service와 API에 대한 Test구현 및 views.py Error 핸들링
 <hr>
+
+## 2번문제
+> ![image](https://user-images.githubusercontent.com/101394490/186183174-0748abe6-5696-4334-a138-59b7be53d4de.png)
+> ### 요구사항:<br>
+>1번문제에서 생성한 데이터를 수정이 되도록 구현. (모든 데이터가 들어가지 않아도 수정이 되어야함)<br>
+> ### 구현과정: <br>
+> 1. views.py에 put메소드 구현
+> 2. 필요한 service 분리 작성(partial = true를 통해 하나의 필드도 수정이 되도록 구현)
+> 3. 해당 service에서 발생 가능한 Error를 Test코드로 검증
+> 4. 3번에서 검증한 Error를 Views.py에서 핸들링
+> 5. API test에서 4번의 핸들링 검증
+<hr>
