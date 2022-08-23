@@ -25,3 +25,9 @@ def delete_job_post(job_post_id : int) -> None:
     """
     jobpost_fot_delete = JobPostingModel.objects.get(id=job_post_id)
     jobpost_fot_delete.delete()
+
+def get_job_post():
+    
+    all_jobpost_data = JobPostingModel.objects.all()
+    job_post_serializer_data = JobPostingSerializer(all_jobpost_data, many=True).data
+    return job_post_serializer_data
