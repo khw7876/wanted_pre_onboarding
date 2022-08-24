@@ -12,6 +12,7 @@ from job_posting.services.job_posting_service import (
     update_job_post,
     delete_job_post,
     get_job_post,
+    get_searched_job_post,
 )
 # Create your views here.
 
@@ -49,5 +50,13 @@ class JobPostView(APIView):
         except JobPostingModel.DoesNotExist:
             return Response({"detail": "삭제할 데이터가 존재하지 않습니다."}, status=status.HTTP_404_NOT_FOUND)
 
+class SerachJobPostView(APIView):
+    """
+    회사 채용공고의 검색기능을 담당하는 View
+    """
+    def get(self,request):
+        data_for_search = str(self.request.query_params.get("search"))
+        searched_job_post_serializer_data = get_searched_job_post(data_for_search)
+        return Response(searched_job_post_serializer_data, status=status.HTTP_200_OK)
 
 

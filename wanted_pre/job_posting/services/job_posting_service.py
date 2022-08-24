@@ -39,3 +39,12 @@ def get_job_post():
     )
     job_post_serializer_data = JobPostingSerializer(all_jobpost_data, many=True).data
     return job_post_serializer_data
+
+def get_searched_job_post(data_for_search : str):
+    searched_data = (
+        JobPostingModel.objects.filter(company__name__icontains=data_for_search)
+        |JobPostingModel.objects.filter(content__icontains=data_for_search)
+        |JobPostingModel.objects.filter(skill__skill_name__icontains=data_for_search)
+        )
+    searched_job_post_serializer_data = JobPostingSerializer(searched_data, many=True).data
+    return searched_job_post_serializer_data
