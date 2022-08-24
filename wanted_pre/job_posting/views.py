@@ -1,3 +1,5 @@
+import django
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, exceptions
@@ -28,7 +30,9 @@ class JobPostView(APIView):
             return Response({"detail" : "새로운 채용공고가 등록이 되었습니다."}, status=status.HTTP_200_OK)
         except exceptions.ValidationError:
             return Response({"detail": "모델에 존재하지 않는 PK를 받고 있습니다."}, status=status.HTTP_400_BAD_REQUEST)
-
+        except django.db.utils.IntegrityError:
+            return Response({"detail" : "company는 값이 비어있을 수 없습니다."}, status=status.HTTP_400_BAD_REQUEST)
+    
     def put(self, request, job_post_id):
         try:
             update_job_post(job_post_id, request.data)
@@ -47,4 +51,3 @@ class JobPostView(APIView):
 
 
 
-            
