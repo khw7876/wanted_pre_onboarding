@@ -2,12 +2,13 @@ from dataclasses import field
 from rest_framework import serializers
 
 from job_posting.models import Company as CompanyModel, JobPosting as JobPostingModel
+from job_posting.models import ApplyJobPost
 
 class JobPostingSerializer(serializers.ModelSerializer):
     company_name = serializers.SerializerMethodField()
     job_position_name = serializers.SerializerMethodField()
     skill_name = serializers.SerializerMethodField()
-
+    
     def get_company_name(self, obj):
         return obj.company.name
     def get_job_position_name(self, obj):
@@ -46,8 +47,16 @@ class DetailJobPostSerializer(serializers.ModelSerializer):
         company_id_list =[]
         for same_post_id in job_post_serializer_data:
             company_id_list.append(same_post_id.id)
+        company_id_list.remove(obj.company.id)
         return company_id_list
 
     class Meta:
         model = JobPostingModel
         fields = ["job_post_serializer", "same_companys_other_job_post"]
+
+
+class ApplyJobPostSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ApplyJobPost
+        fields = "__all__"

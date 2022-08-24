@@ -4,8 +4,8 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status, exceptions
 
-from job_posting.models import JobPosting as JobPostingModel
-from job_posting.serializers import DetailJobPostSerializer
+from job_posting.models import JobPosting as JobPostingModel, ApplyJobPost as ApplyJobPostModel
+from job_posting.serializers import ApplyJobPostSerializer
 
 from job_posting.services.job_posting_service import (
     create_job_post,
@@ -68,3 +68,16 @@ class DetailJobPostView(APIView):
     def get(self,request,job_post_id):
         detail_job_post_serializer_data = get_detail_job_post(job_post_id)
         return Response(detail_job_post_serializer_data, status=status.HTTP_200_OK)
+
+class ApplyJobPostView(APIView):
+    """
+    회사 채용공고에 지원하는 View
+    """
+    def post(self,request):
+        is_user_applyed = ApplyJobPostModel.objects.filter(**request.data)
+        if is_user_applyed:
+            return Response({"detail" : "이미 지원을 한 유저입니다."}, status=status.HTTP_400_BAD_REQUEST)
+        apply_jobpost_serializer = ApplyJobPostSerializer(data = request.data)
+        apply_jobpost_serializer.is_valid(raise_exception=True)
+        apply_jobpost_serializer.save()
+        return Response({"detail" : "해당 채용공고가 지원이 되었습니다."}, status=status.HTTP_200_OK)
