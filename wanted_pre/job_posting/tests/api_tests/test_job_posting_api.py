@@ -125,3 +125,18 @@ class TestJobPostingAPI(APITestCase):
 
         self.assertEqual(response.status_code, 404)
         self.assertEqual(result["detail"], "삭제할 데이터가 존재하지 않습니다.")
+
+
+    def test_get_jobpost(self):
+        """
+        JobPostView의 get 함수를 검증하는 함수
+        case : 정상적으로 작동을 했을 경우
+        """
+        client = APIClient()
+
+        url = "/job_post/" 
+        response = client.get(url, content_type="application/json")
+        result = response.json()
+
+        self.assertEqual(response.status_code, 200)
+

@@ -27,7 +27,15 @@ def delete_job_post(job_post_id : int) -> None:
     jobpost_fot_delete.delete()
 
 def get_job_post():
-    
-    all_jobpost_data = JobPostingModel.objects.all()
+    """
+    4. 저장된 채용공고들을 불러오는 service
+    """
+    all_jobpost_data = (
+        JobPostingModel.objects
+        .select_related("company")
+        .select_related("job_position")
+        .select_related("skill")
+        .all()
+    )
     job_post_serializer_data = JobPostingSerializer(all_jobpost_data, many=True).data
     return job_post_serializer_data
