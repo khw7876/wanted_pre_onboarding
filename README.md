@@ -72,7 +72,7 @@
 <hr>
 
 ## 5번문제
-> ![image](https://user-images.githubusercontent.com/101394490/186352441-5581d94d-7a1f-40b6-b805-17a36376e280.png)
+> ![image](https://user-images.githubusercontent.com/101394490/186374214-9865f577-2874-4c09-bb12-d9d406ea5455.png)
 > ### 요구사항:<br>
 >4번 문제에서 get하는 데이터에 추가적으로 같은 회사가 공고하는 job_post의 id들을 리스트로 반환하라 <br>
 > ### 구현과정: <br>
@@ -80,4 +80,18 @@
 > 2. 새로운 serializer를 생성하여 기존의 데이터에 추가로 method_field를 통하여 리스트 반환
 > 3. get 메소드를 통하여 기능 구현
 > 4. 필요한 service 분리작성
+> 5. 같은 회사공고에서 자기 자신의 값 제거
+<hr>
+
+## 6번문제
+> ![image](https://user-images.githubusercontent.com/101394490/186374149-96b3e9ac-3d0e-4441-8136-803754ce256c.png)
+> ### 요구사항:<br>
+>새로운 모델과 serializer를 사용하여 user가 해당 job_post에 지원하는 view생성. 단, 중복지원 불가br>
+> ### 구현과정: <br>
+> 1. 지원을 담당하는 새로운 model 생성
+> 2. 새로운 모델에 맞추어 makemigrations 및 migrate 적용
+> 3. 1번에서 생성한 모델에 맞추어 serializer를 생성
+> 4. 1,3번에 만들어놓은 모델과 serializer에 맞추어서 post메소드 구현
+> 5. 저장이 되었다면, 1번 모델에서 job_post를 기준으로 User 탐색
+> 6. 이미 존재한다면 Return 400 Error를 반환
 <hr>
