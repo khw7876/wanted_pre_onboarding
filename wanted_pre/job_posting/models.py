@@ -29,3 +29,7 @@ class CompanyCountry(models.Model):
 
 class CompanyRegion(models.Model):
     region = models.CharField("지역", max_length=20, unique=True)
+
+class ApplyJobPost(models.Model):
+    job_posting = models.ForeignKey("JobPosting", on_delete=models.CASCADE)
+    user = models.ForeignKey("User", on_delete=models.SET_NULL, null=True)
