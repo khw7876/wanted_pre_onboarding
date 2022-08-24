@@ -1,6 +1,6 @@
 from typing import Dict
 from job_posting.models import JobPosting as JobPostingModel
-from job_posting.serializers import JobPostingSerializer
+from job_posting.serializers import JobPostingSerializer, DetailJobPostSerializer
 
 def create_job_post(jobpost_data : Dict[str, str]) -> None:
     """
@@ -28,7 +28,7 @@ def delete_job_post(job_post_id : int) -> None:
 
 def get_job_post():
     """
-    4. 저장된 채용공고들을 불러오는 service
+    4-1. 저장된 채용공고들을 불러오는 service
     """
     all_jobpost_data = (
         JobPostingModel.objects
@@ -41,6 +41,9 @@ def get_job_post():
     return job_post_serializer_data
 
 def get_searched_job_post(data_for_search : str):
+    """
+    4-2 저장된 채용공고들중 특정 단어를 포함하는 공고를 불러오는 service
+    """
     searched_data = (
         JobPostingModel.objects.filter(company__name__icontains=data_for_search)
         |JobPostingModel.objects.filter(content__icontains=data_for_search)
@@ -48,3 +51,12 @@ def get_searched_job_post(data_for_search : str):
         )
     searched_job_post_serializer_data = JobPostingSerializer(searched_data, many=True).data
     return searched_job_post_serializer_data
+
+def get_detail_job_post(job_post_id : int):
+    """
+    5. 저장된 채용공고중 상세페이지를 불러오는 service
+    """
+    detail_jobpost_data = JobPostingModel.objects.get(id=job_post_id)
+    detail_job_post_serializer_data = DetailJobPostSerializer(detail_jobpost_data).data
+
+    return detail_job_post_serializer_data
