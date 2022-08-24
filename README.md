@@ -56,3 +56,17 @@
 > 5. selected_related를 통해 쿼리수 최소화 (4 < 1)
 > 6. 정상적인 상황에 맞춘 테스트코드 작성
 <hr>
+
+
+## 4-2번문제
+> ![image](https://user-images.githubusercontent.com/101394490/186352441-5581d94d-7a1f-40b6-b805-17a36376e280.png)
+> ### 요구사항:<br>
+>생성된 데이터들에 특정 단어를 포함하는 데이터들을 검색하는 기능을 구현 <br>
+> ### 구현과정: <br>
+> 1. views.py에 검색기능을 담당하는 새로운 View 구현
+> 2. get 메소드를 통하여 기능 구현
+> 3. 필요한 service 분리작성
+> 4. query_params를 통하여 검색할 단어 받아오기
+> 5. contains를 통하여 특정 단어를 포함한 query_set들 반환
+> 6. query_set들을 |(백슬래쉬)를 이용하여 5번의 query_set들을 병합
+<hr>
