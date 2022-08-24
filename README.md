@@ -43,3 +43,16 @@
 > 4. 3번에서 검증한 Error를 Views.py에서 핸들링
 > 5. API test에서 4번의 핸들링 검증
 <hr>
+
+## 4-1번문제
+> ![image](https://user-images.githubusercontent.com/101394490/186343464-1ad73937-e1d1-4a28-a71e-615d6350e4f6.png)
+> ### 요구사항:<br>
+>생성하거나 수정한 데이터볼 수 있도록 구현 <br>
+> ### 구현과정: <br>
+> 1. views.py에 get 메소드 구현
+> 2. 필요한 service 분리작성
+> 3. serializer 커스텀 작성
+> 4. CaptureQueriesContext를 통한 쿼리수 파악
+> 5. selected_related를 통해 쿼리수 최소화 (4 < 1)
+> 6. 정상적인 상황에 맞춘 테스트코드 작성
+<hr>
