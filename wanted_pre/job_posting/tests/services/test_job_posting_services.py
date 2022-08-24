@@ -10,6 +10,7 @@ from job_posting.services.job_posting_service import (
     create_job_post,
     update_job_post,
     delete_job_post,
+    get_job_post,
 )
 
 DOES_NOT_EXIST_NUM = 0
@@ -156,3 +157,11 @@ class TestCreateJobPost(TestCase):
         """
         with self.assertRaises(JobPostingModel.DoesNotExist):
             delete_job_post(DOES_NOT_EXIST_NUM)
+    
+    def test_get_job_post(self):
+        """
+        채용공고를 불러오는 service함수 검증
+        case : 정상적으로 작동을 했을 경우
+        """
+        with self.assertNumQueries(1):
+            get_job_post()
