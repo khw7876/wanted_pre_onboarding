@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework import status, exceptions
 
 from job_posting.models import JobPosting as JobPostingModel
-from job_posting.serializers import JobPostingSerializer
+from job_posting.serializers import DetailJobPostSerializer
 
 from job_posting.services.job_posting_service import (
     create_job_post,
@@ -13,6 +13,7 @@ from job_posting.services.job_posting_service import (
     delete_job_post,
     get_job_post,
     get_searched_job_post,
+    get_detail_job_post
 )
 # Create your views here.
 
@@ -60,3 +61,10 @@ class SerachJobPostView(APIView):
         return Response(searched_job_post_serializer_data, status=status.HTTP_200_OK)
 
 
+class DetailJobPostView(APIView):
+    """
+    회사 채용공고의 상세페이지를 담당하는 View 
+    """
+    def get(self,request,job_post_id):
+        detail_job_post_serializer_data = get_detail_job_post(job_post_id)
+        return Response(detail_job_post_serializer_data, status=status.HTTP_200_OK)

@@ -33,3 +33,21 @@ class JobPostingSerializer(serializers.ModelSerializer):
             "job_position": {"write_only": True},
             "skill": {"write_only": True},
         }
+
+class DetailJobPostSerializer(serializers.ModelSerializer):
+    job_post_serializer = serializers.SerializerMethodField()
+    same_companys_other_job_post = serializers.SerializerMethodField()
+
+    def get_job_post_serializer(self, obj):
+        return JobPostingSerializer(obj).data
+
+    def get_same_companys_other_job_post(self, obj):
+        job_post_serializer_data = JobPostingModel.objects.filter(company=obj.company) 
+        company_id_list =[]
+        for same_post_id in job_post_serializer_data:
+            company_id_list.append(same_post_id.id)
+        return company_id_list
+
+    class Meta:
+        model = JobPostingModel
+        fields = ["job_post_serializer", "same_companys_other_job_post"]
