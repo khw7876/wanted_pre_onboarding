@@ -70,3 +70,14 @@
 > 5. contains를 통하여 특정 단어를 포함한 query_set들 반환
 > 6. query_set들을 |(백슬래쉬)를 이용하여 5번의 query_set들을 병합
 <hr>
+
+## 5번문제
+> ![image](https://user-images.githubusercontent.com/101394490/186352441-5581d94d-7a1f-40b6-b805-17a36376e280.png)
+> ### 요구사항:<br>
+>4번 문제에서 get하는 데이터에 추가적으로 같은 회사가 공고하는 job_post의 id들을 리스트로 반환하라 <br>
+> ### 구현과정: <br>
+> 1. views.py에 상세페이지를 담당하는 새로운 View 구현
+> 2. 새로운 serializer를 생성하여 기존의 데이터에 추가로 method_field를 통하여 리스트 반환
+> 3. get 메소드를 통하여 기능 구현
+> 4. 필요한 service 분리작성
+<hr>
