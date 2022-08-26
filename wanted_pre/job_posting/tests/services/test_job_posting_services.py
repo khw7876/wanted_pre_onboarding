@@ -11,6 +11,7 @@ from job_posting.services.job_posting_service import (
     update_job_post,
     delete_job_post,
     get_job_post,
+    get_searched_job_post,
 )
 
 DOES_NOT_EXIST_NUM = 0
@@ -147,7 +148,7 @@ class TestCreateJobPost(TestCase):
         """
         job_post_id_for_delete = JobPostingModel.objects.get(content="test채용공고").id
 
-        with self.assertNumQueries(2):
+        with self.assertNumQueries(3):
             delete_job_post(job_post_id_for_delete)
 
     def test_when_delete_job_post_content_has_worng_post_id(self):
@@ -163,5 +164,16 @@ class TestCreateJobPost(TestCase):
         채용공고를 불러오는 service함수 검증
         case : 정상적으로 작동을 했을 경우
         """
+        with self.assertNumQueries(1):
+            get_job_post()
+
+    def test_get_searched_job_post(self):
+        """
+        저장된 채용공고들중 특정 단어를 포함하는 공고를 불러오는 service 함수 검증
+        case : 정상적으로 작동을 했을 경우
+        """
+        data_for_search = "채용"
+        get_searched_job_post(data_for_search)
+
         with self.assertNumQueries(1):
             get_job_post()
