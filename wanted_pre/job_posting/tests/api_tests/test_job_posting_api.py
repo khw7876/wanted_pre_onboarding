@@ -139,4 +139,3 @@ class TestJobPostingAPI(APITestCase):
         result = response.json()
 
         self.assertEqual(response.status_code, 200)
-
