@@ -175,5 +175,15 @@ class TestCreateJobPost(TestCase):
         data_for_search = "채용"
         get_searched_job_post(data_for_search)
 
-        with self.assertNumQueries(1):
-            get_job_post()
+        with self.assertNumQueries(4):
+            get_searched_job_post(data_for_search)
+
+    def test_when_get_searched_job_post_has_no_data(self):
+        """
+        저장된 채용공고들중 특정 단어를 포함하는 공고를 불러오는 service 함수 검증
+        case : 검색 결과에 아무것도 없을 경우
+        """
+        data_for_search = "해당이 되지 않는 검색어"
+        
+        self.assertEqual(get_searched_job_post(data_for_search), [])
+
